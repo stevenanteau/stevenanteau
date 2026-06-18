@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steven Anteau — CV</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --border: #2a2a2a;
+      --accent: #c8a96e;
+      --text: #e8e8e8;
+      --muted: #888;
+      --nav-h: 56px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Georgia', serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      overflow-x: auto;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0 18px;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    nav a:hover { color: var(--text); border-bottom-color: var(--accent); }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    header {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    header .tagline {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    header .summary {
+      max-width: 680px;
+      color: #bbb;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 28px;
+    }
+    .contact-bar a, .contact-bar span {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .contact-bar a:hover { color: var(--accent); }
+
+    section { padding-top: 64px; }
+    .section-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .entry-list { display: flex; flex-direction: column; gap: 16px; }
+    .entry {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0 20px;
+    }
+    .entry-year {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding-top: 2px;
+      white-space: nowrap;
+    }
+    .entry-title { font-size: 1rem; color: var(--text); font-weight: normal; }
+    .entry-sub { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.82rem; color: var(--muted); }
+
+    .job { margin-bottom: 44px; }
+    .job:last-child { margin-bottom: 0; }
+    .job-header { margin-bottom: 12px; }
+    .job-org {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .job-title { font-size: 1.05rem; font-weight: bold; color: #fff; }
+    .job-date { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
+    .job ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+    .job ul li { padding-left: 18px; position: relative; color: #bbb; font-size: 0.95rem; }
+    .job ul li::before { content: '-'; position: absolute; left: 0; color: var(--accent); }
+
+    .skills-grid { display: flex; flex-direction: column; gap: 18px; }
+    .skill-name { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.85rem; color: var(--text); font-weight: bold; margin-bottom: 2px; }
+    .skill-desc { font-size: 0.9rem; color: #888; line-height: 1.6; }
+
+    footer {
+      margin-top: 72px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 520px) {
+      .entry { grid-template-columns: 1fr; gap: 2px; }
+      .entry-year { font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#education">Education</a>
+  <a href="#certifications">Certifications</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+</nav>
+
+<div class="page">
+
+  <header>
+    <h1>Steven Anteau</h1>
+    <p class="tagline">MLIS Candidate &nbsp;·&nbsp; International Educator &nbsp;·&nbsp; MEd Student Wellness</p>
+    <p class="summary">International educator with MLIS candidacy, computer science background, and 10+ years of classroom experience. Skilled in cataloging, digital resource management, data tracking, and bilingual collections. Seeking academic library role to support student research, media literacy, and equitable access.</p>
+    <div class="contact-bar">
+      <a href="tel:4193702234">&#9990;&ensp;419 370 2234</a>
+      <a href="mailto:santesu@g.emporia.edu">&#9993;&ensp;santesu@g.emporia.edu</a>
+      <span>&#9679;&ensp;Toledo, Ohio</span>
+    </div>
+  </header>
+
+  <section id="education">
+    <p class="section-label">Education</p>
+    <div class="entry-list">
+      <div class="entry"><span class="entry-year">2027 *</span><div class="entry-body"><p class="entry-title">Masters of Library Science</p><p class="entry-sub">Emporia State University</p></div></div>
+      <div class="entry"><span class="entry-year">2027 *</span><div class="entry-body"><p class="entry-title">Bachelor of Arts — Computer Science</p><p class="entry-sub">University of the People</p></div></div>
+      <div class="entry"><span class="entry-year">2026</span><div class="entry-body"><p class="entry-title">ESOL &amp; Reading Endorsement</p><p class="entry-sub">Doral College</p></div></div>
+      <div class="entry"><span class="entry-year">2026</span><div class="entry-body"><p class="entry-title">Associates of Computer Science</p><p class="entry-sub">University of the People</p></div></div>
+      <div class="entry"><span class="entry-year">2024</span><div class="entry-body"><p class="entry-title">Masters of Education — Health and Wellness</p><p class="entry-sub">American College of Education</p></div></div>
+      <div class="entry"><span class="entry-year">2018</span><div class="entry-body"><p class="entry-title">Bachelor of Arts — Management and Entrepreneurship</p><p class="entry-sub">Patten University</p></div></div>
+    </div>
+    <p style="margin-top:18px;font-size:0.78rem;color:var(--muted);font-family:'Helvetica Neue',Arial,sans-serif;">* Anticipated</p>
+  </section>
+
+  <section id="certifications">
+    <p class="section-label">Certifications &amp; Licenses</p>
+    <div class="entry-list">
+      <div class="entry"><span class="entry-year">2025</span><div class="entry-body"><p class="entry-title">AI &amp; Pastoral Care — AI &amp; Online Safety — Pastoral &amp; Wellbeing Interventions</p><p class="entry-sub">The National College</p></div></div>
+      <div class="entry"><span class="entry-year">2025</span><div class="entry-body"><p class="entry-title">Counsellor Accreditation Programme</p><p class="entry-sub">Times Higher Education</p></div></div>
+      <div class="entry"><span class="entry-year">2025</span><div class="entry-body"><p class="entry-title">AI Fundamentals for K-12 Teachers</p><p class="entry-sub">SPGS / Fund</p></div></div>
+      <div class="entry"><span class="entry-year">2025</span><div class="entry-body"><p class="entry-title">Safeguarding, SEND Inclusion &amp; Child Protection for International Schools (CPD Series)</p><p class="entry-sub">TES</p></div></div>
+      <div class="entry"><span class="entry-year">2024</span><div class="entry-body"><p class="entry-title">IB DP Counseling — Category 1</p><p class="entry-sub">International Baccalaureate</p></div></div>
+      <div class="entry"><span class="entry-year">2021</span><div class="entry-body"><p class="entry-title">U.S. Teaching License — English, Grades 6-12</p><p class="entry-sub">Florida Department of Education</p></div></div>
+      <div class="entry"><span class="entry-year">2019</span><div class="entry-body"><p class="entry-title">IB PYP Category 1: Making the PYP Happen</p><p class="entry-sub">International Baccalaureate</p></div></div>
+      <div class="entry"><span class="entry-year">2014</span><div class="entry-body"><p class="entry-title">TEFL Certificate (A2 Standard)</p><p class="entry-sub">International TEFL Academy</p></div></div>
+      <div class="entry"><span class="entry-year">2014</span><div class="entry-body"><p class="entry-title">TESOL Level 4 Certificate</p><p class="entry-sub">INTESOL Worldwide</p></div></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <p class="section-label">Work Experience</p>
+    <div class="job"><div class="job-header"><p class="job-org">St. Paul Girls' School International — China</p><p class="job-title">Middle School EAL/Reading Program Leader &amp; Library Assistant</p><p class="job-date">January 2025 — Present</p></div><ul><li>Develop and sustain a reading program for bilingual learners, managing cataloging, classification, and inventory for leveled readers, audiobooks, and multilingual collections.</li><li>Provide one-on-one reference and research support: help students analyze assignments, navigate catalog systems (Accessit), and develop effective search strategies.</li><li>Create digital library guides (LibGuides-style) for EAL learners, curating databases, audiobooks, and leveled resources.</li><li>Train and supervise a student library ambassador program, delegating tasks and building peer-to-peer research advocacy.</li><li>Use Python and spreadsheets to build data tracking tools for circulation metrics and reading progress.</li></ul></div>
+    <div class="job"><div class="job-header"><p class="job-org">Ying Ya St. Peter's International School — China</p><p class="job-title">Dean of Students — Middle School &amp; Pastoral Coordinator</p><p class="job-date">May 2023 — January 2025</p></div><ul><li>Coordinated academic, counseling, boarding, and family services for 150+ students — aligned policies, documented interventions, protected confidentiality.</li><li>Taught weekly PSHE curriculum on digital safety, emotional health, and decision-making.</li><li>Led school-wide house system to develop student leadership and cross-grade collaboration.</li><li>Trained faculty on differentiated instruction and student safeguarding.</li></ul></div>
+    <div class="job"><div class="job-header"><p class="job-org">Ecole International French-Japanese School — Japan</p><p class="job-title">Deputy Director &amp; Head of Literature Department</p><p class="job-date">November 2021 — April 2023</p></div><ul><li>Designed and delivered grades 6-8 ELA/literature curriculum (IB frameworks); maintained unit archives and assessment records.</li><li>Led school-wide safeguarding policy implementation and training documentation.</li><li>Oversaw administrative records: budgets, recruitment files, vendor contracts.</li></ul></div>
+    <div class="job"><div class="job-header"><p class="job-org">Platinum Kids / E-Place — Japan</p><p class="job-title">AP Curriculum Tutor &amp; Academic Coach (ELA and Humanities)</p><p class="job-date">2020 — 2021</p></div><ul><li>Created individualized learning plans for 40+ students; documented progress, goals, and outcomes.</li><li>Curated AP resource library (texts, prompts, rubrics) for repeat use.</li></ul></div>
+    <div class="job"><div class="job-header"><p class="job-org">Qingdao Chaoyin International School — China</p><p class="job-title">IB Homeroom Teacher (Grades 3-4) &amp; Reading Program Lead</p><p class="job-date">May 2018 — July 2020</p></div><ul><li>Directed school-wide reading program for 90+ students (Grades 1-6): curated leveled texts, managed checkout systems, documented progress.</li><li>Preserved IB unit archives: lesson plans, rubrics, student work samples.</li></ul></div>
+    <div class="job"><div class="job-header"><p class="job-org">Inner Mongolia University of Economics and Finance — China</p><p class="job-title">Professor of Foreign Languages Faculty</p><p class="job-date">January 2015 — December 2017</p></div><ul><li>Organized course materials for English reading, writing, listening, and speaking — maintained syllabi, assignments, and exam archives.</li><li>Served as Translation Proofreader for university documents; managed foreign recruitment files.</li></ul></div>
+    <div class="job"><div class="job-header"><p class="job-org">St. John's Jesuit High School — USA</p><p class="job-title">Assistant ESL Teacher</p><p class="job-date">August 2012 — June 2014</p></div><ul><li>Documented student language acquisition progress; maintained confidential records and writing lab resources.</li><li>Created and preserved middle school ELA curriculum (grades 6-8).</li></ul></div>
+    <div class="job"><div class="job-header"><p class="job-org">Oakdale Elementary School — USA</p><p class="job-title">K-3 Deaf Classroom Assistant</p><p class="job-date">August 2011 — June 2012</p></div><ul><li>Supported deaf/hard-of-hearing students (ages 3-6); maintained daily activity logs and progress notes.</li></ul></div>
+  </section>
+
+  <section id="skills">
+    <p class="section-label">Skills &amp; Interests</p>
+    <div class="skills-grid">
+      <div class="skill-item"><p class="skill-name">Library &amp; Archiving</p><p class="skill-desc">MLIS in progress; skilled in LibGuides, cataloging, classification, metadata, digital resource guides, and lost-media research with online communities.</p></div>
+      <div class="skill-item"><p class="skill-name">Digital Preservation</p><p class="skill-desc">Special interest in finding and preserving lost media through collaboration with online communities — research, documentation, and collective problem-solving.</p></div>
+      <div class="skill-item"><p class="skill-name">Literature &amp; Critical Analysis</p><p class="skill-desc">Avid participant in film and book discussions; skilled at synthesizing sources and identifying themes across texts.</p></div>
+      <div class="skill-item"><p class="skill-name">Technology &amp; AI</p><p class="skill-desc">Python, spreadsheets, fine-tuning language models (Hugging Face, OpenAI, DeepSeek); prompt engineering for education.</p></div>
+      <div class="skill-item"><p class="skill-name">Media Production</p><p class="skill-desc">Audio/video editing: Final Cut Pro, Logic Pro, iMovie, GarageBand.</p></div>
+      <div class="skill-item"><p class="skill-name">Wellness &amp; Mindfulness</p><p class="skill-desc">Practice and teach yoga; daily journaling for self-reflection, emotional wellbeing, and stress management.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>References available upon request &nbsp;·&nbsp; stevenanteauesl@gmail.com</p>
+  </footer>
+
+</div>
+</body>
+</html>
