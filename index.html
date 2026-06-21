@@ -115,16 +115,21 @@ gap: 6px;
 }
 .contact-bar a:hover { color: var(--accent); }
 
+.header-inner {
+display: flex;
+gap: 36px;
+align-items: stretch;
+}
 .profile-photo {
-width: 88px;
-height: 88px;
-border-radius: 50%;
-border: 2px solid var(--accent);
+width: 140px;
+border-radius: 6px;
+border: 1px solid var(--border);
 object-fit: cover;
 object-position: center top;
-margin-bottom: 22px;
+flex-shrink: 0;
 display: block;
 }
+.header-text { flex: 1; }
 
 section { padding-top: 64px; }
 .section-label {
@@ -188,6 +193,8 @@ text-align: center;
 @media (max-width: 520px) {
 .entry { grid-template-columns: 1fr; gap: 2px; }
 .entry-year { font-size: 0.75rem; }
+.header-inner { flex-direction: column; }
+.profile-photo { width: 100%; max-height: 260px; }
 }
 </style>
 </head>
@@ -203,7 +210,9 @@ text-align: center;
 <div class="page">
 
 <header>
+<div class="header-inner">
 <img src="photo.jpg" alt="Steven Anteau" class="profile-photo" />
+<div class="header-text">
 <h1>Steven Anteau</h1>
 <p class="tagline">MLIS Candidate &nbsp;·&nbsp; International Educator &nbsp;·&nbsp; MEd Student Wellness</p>
 <p class="summary">International educator with MLIS candidacy, computer science background, and 10+ years of classroom experience. Skilled in cataloging, digital resource management, data tracking, and bilingual collections. Seeking academic library role to support student research, media literacy, and equitable access.</p>
@@ -214,6 +223,8 @@ text-align: center;
 </div>
 <div style="margin-top:24px;">
 <a href="resume.pdf" download style="display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'">&#8595;&ensp;Download PDF</a>
+</div>
+</div>
 </div>
 </header>
 
